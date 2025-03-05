@@ -1,22 +1,22 @@
-import youtube_dl
-from youtube_dl.utils import RegexNotFoundError
+import yt_dlp as youtube_dl
+from yt_dlp.utils import RegexNotFoundError
 
 def download_video(link, output_path):
     options = {
-    'format': 'bestaudio',
-    'outtmpl': output_path + '/%(title)s.%(ext)s',
-    'postprocessors': [{
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
-        'preferredquality': '192',
-    }],
-    'quiet': False,  # Set quiet to False for more verbose output
-    'headers': {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-    },
-    #'youtube_include_dash_manifest': False,  # Add this line to disable DASH manifest
-    #'no_check_certificate': True,  # Add this line to disable SSL certificate verification
-}
+        'format': 'bestaudio',
+        'outtmpl': output_path + '/%(title)s.%(ext)s',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'quiet': False,  # Set quiet to False for more verbose output
+        'headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        },
+        #'youtube_include_dash_manifest': False,  # Add this line to disable DASH manifest
+        #'no_check_certificate': True,  # Add this line to disable SSL certificate verification
+    }
 
     with youtube_dl.YoutubeDL(options) as ydl:
         try:
